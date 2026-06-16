@@ -13,36 +13,46 @@
         <h4 id="page-title">AX Tools</h4>
     </div>
 
-    <div id="tools-screen" class="app-screen">
-        <div class="content"><h3>خانة الأدوات</h3><p>جاهزة للإضافة...</p></div>
-    </div>
-    <div id="emails-screen" class="app-screen hidden">
-        <div class="content"><h3>الإيميلات</h3></div>
-    </div>
-    <div id="games-screen" class="app-screen hidden">
-        <div class="content xo-container">
-            <select id="game-mode" onchange="resetGame()">
-                <option value="cpu">ضد الكمبيوتر</option>
-                <option value="pvp">لاعب ضد لاعب</option>
-            </select>
-            <h3 id="status-text">دور: X</h3>
-            <div class="xo-board" id="board">
-                <div class="cell" onclick="makeMove(0)" id="c0"></div><div class="cell" onclick="makeMove(1)" id="c1"></div><div class="cell" onclick="makeMove(2)" id="c2"></div>
-                <div class="cell" onclick="makeMove(3)" id="c3"></div><div class="cell" onclick="makeMove(4)" id="c4"></div><div class="cell" onclick="makeMove(5)" id="c5"></div>
-                <div class="cell" onclick="makeMove(6)" id="c6"></div><div class="cell" onclick="makeMove(7)" id="c7"></div><div class="cell" onclick="makeMove(8)" id="c8"></div>
+    <div id="auth-screen" class="app-screen">
+        <div class="content auth-box">
+            <h3>تسجيل الدخول</h3>
+            <input type="email" id="email-input" placeholder="البريد الإلكتروني">
+            <button onclick="handleLogin()">إرسال رمز</button>
+            <div id="otp-container" class="hidden">
+                <input type="text" id="otp-input" placeholder="أدخل الرمز">
+                <button onclick="handleVerify()">تحقق</button>
             </div>
-            <button class="reset-btn" onclick="resetGame()">إعادة اللعبة</button>
         </div>
     </div>
-    <div id="about-screen" class="app-screen hidden">
-        <div class="content"><h3>المزيد</h3><p>تطوير: سمير</p></div>
+
+    <div id="games-screen" class="app-screen hidden">
+        <div class="content xo-container">
+            <div id="menu-area">
+                <select id="game-mode"><option value="cpu">ضد الكمبيوتر</option><option value="pvp">لاعب ضد لاعب</option></select>
+                <select id="difficulty"><option value="easy">مبتدئ</option><option value="medium">محترف</option><option value="hard">أسطوري</option></select>
+                <button class="start-btn" onclick="startGame()">ابدأ اللعبة</button>
+            </div>
+            <div id="game-area" class="hidden">
+                <h3 id="status-text">دور: X</h3>
+                <div class="xo-board" id="board">
+                    <div class="cell" onclick="makeMove(0)" id="c0"></div><div class="cell" onclick="makeMove(1)" id="c1"></div><div class="cell" onclick="makeMove(2)" id="c2"></div>
+                    <div class="cell" onclick="makeMove(3)" id="c3"></div><div class="cell" onclick="makeMove(4)" id="c4"></div><div class="cell" onclick="makeMove(5)" id="c5"></div>
+                    <div class="cell" onclick="makeMove(6)" id="c6"></div><div class="cell" onclick="makeMove(7)" id="c7"></div><div class="cell" onclick="makeMove(8)" id="c8"></div>
+                </div>
+                <button onclick="resetGame()">إعادة اللعبة</button>
+            </div>
+        </div>
     </div>
 
+    <div id="tools-screen" class="app-screen hidden"><div class="content"><h3>الأدوات</h3></div></div>
+    <div id="emails-screen" class="app-screen hidden"><div class="content"><h3>الإيميلات</h3></div></div>
+    <div id="about-screen" class="app-screen hidden"><div class="content"><h3>المزيد</h3></div></div>
+
     <nav class="bottom-nav">
-        <a href="#" class="nav-btn" onclick="switchScreen('tools')"><i class="fas fa-tools"></i><span>أدوات</span></a>
-        <a href="#" class="nav-btn" onclick="switchScreen('emails')"><i class="fas fa-envelope"></i><span>إيميلات</span></a>
-        <a href="#" class="nav-btn" onclick="switchScreen('games')"><i class="fas fa-gamepad"></i><span>ألعاب</span></a>
-        <a href="#" class="nav-btn" onclick="switchScreen('about')"><i class="fas fa-ellipsis-h"></i><span>المزيد</span></a>
+        <a class="nav-btn" onclick="switchScreen('tools')"><i class="fas fa-tools"></i><span>أدوات</span></a>
+        <a class="nav-btn" onclick="switchScreen('emails')"><i class="fas fa-envelope"></i><span>إيميلات</span></a>
+        <a class="nav-btn" onclick="switchScreen('games')"><i class="fas fa-gamepad"></i><span>ألعاب</span></a>
+        <a class="nav-btn" onclick="switchScreen('about')"><i class="fas fa-ellipsis-h"></i><span>المزيد</span></a>
     </nav>
     <script src="app.js"></script>
 </body>
