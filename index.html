@@ -3,72 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة X-O الذكية</title>
+    <title>AX Tools</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <div id="auth-screen" class="card">
-            <h2>مرحباً بك في لـعبة X-O</h2>
-            <p class="subtitle">سجل دخولك سريعاً للبدء</p>
-            <button class="btn google-btn" onclick="handleSocialLogin('Google')">
-                <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google">
-                الدخول بواسطة Google
-            </button>
-            <button class="btn apple-btn" onclick="handleSocialLogin('Apple')">
-                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple">
-                الدخول بواسطة Apple
-            </button>
-        </div>
-
-        <div id="otp-screen" class="card hidden">
-            <h2>رمز التفعيل</h2>
-            <p class="subtitle">أدخل الرمز المرسل إلى بريدك الإلكتروني</p>
-            <input type="text" id="otp-input" placeholder="— — — — — —" maxlength="6">
-            <button class="btn primary-btn" onclick="verifyOTP()">تأكيد الرمز</button>
-        </div>
-
-        <div id="mode-screen" class="card hidden">
-            <h2>اختر نمط اللعب</h2>
-            <p class="subtitle">حدد كيف تريد اللعب اليوم</p>
-            <button class="btn primary-btn" onclick="selectMode('pvp')">لاعب ضد لاعب (شاشة واحدة)</button>
-            <button class="btn primary-btn" onclick="selectMode('ai')">اللعب ضد الكمبيوتر</button>
-        </div>
-
-        <div id="difficulty-screen" class="card hidden">
-            <h2>مستوى الصعوبة</h2>
-            <p class="subtitle">اختر مستوى تحدي الكمبيوتر</p>
-            <button class="btn google-btn" onclick="selectDifficulty('easy')" style="border: 2px solid #334155;">مبتدئ 🌟</button>
-            <button class="btn primary-btn" onclick="selectDifficulty('medium')">محترف 🔥</button>
-            <button class="btn apple-btn" onclick="selectDifficulty('hard')">أسطوري 👑</button>
-        </div>
-
-        <div id="game-screen" class="card hidden">
-            <div class="score-board">
-                <div class="player-score">اللاعب X: <span id="score-x">0</span></div>
-                <div class="player-score">اللاعب O: <span id="score-o">0</span></div>
-            </div>
-            <h3 id="status">دور اللاعب X</h3>
+    <div id="auth-screen" class="screen">
+        <div class="auth-box">
+            <h2>تسجيل الدخول</h2>
+            <p>ادخل بريدك الإلكتروني لتلقي رمز التحقق</p>
+            <input type="email" id="user-email" placeholder="name@example.com">
+            <button id="btn-login" onclick="handleLogin()">إرسال الرمز 🚀</button>
             
-            <div class="board">
-                <div class="cell" data-index="0"></div>
-                <div class="cell" data-index="1"></div>
-                <div class="cell" data-index="2"></div>
-                <div class="cell" data-index="3"></div>
-                <div class="cell" data-index="4"></div>
-                <div class="cell" data-index="5"></div>
-                <div class="cell" data-index="6"></div>
-                <div class="cell" data-index="7"></div>
-                <div class="cell" data-index="8"></div>
-            </div>
-            
-            <div style="display: flex; gap: 10px;">
-                <button class="btn reset-btn" onclick="resetGame()" style="flex: 1;">إعادة اللعب</button>
-                <button class="btn reset-btn" onclick="backToModes()" style="flex: 1; background: #dc2626;">تغيير النمط</button>
+            <div id="otp-area" class="hidden">
+                <input type="text" id="otp-code" placeholder="أدخل الرمز المكون من 6 أرقام">
+                <button id="btn-verify" onclick="handleVerify()">تحقق ودخول</button>
             </div>
         </div>
+    </div>
+
+    <div id="main-screen" class="screen hidden">
+        
+        <header class="app-header">
+            <div class="logo">AX Tools</div>
+            <div class="user-status"><i class="fa-solid fa-circle-check"></i> متصل</div>
+        </header>
+
+        <main class="app-content">
+            
+            <section id="section-files" class="tab-content">
+                <div class="card downloader-card">
+                    <h3><i class="fa-solid fa-cloud-arrow-down"></i> محمل المقاطع الذكي</h3>
+                    <p>يدعم يوتيوب، انستقرام، تيك توك، وسناب شات</p>
+                    <div class="input-group">
+                        <input type="text" id="download-url" placeholder="ضع رابط المقطع هنا...">
+                        <button id="btn-download"><i class="fa-solid fa-download"></i></button>
+                    </div>
+                </div>
+
+                <div class="files-manager">
+                    <h3><i class="fa-solid fa-folder-open"></i> ملفاتي المحملة</h3>
+                    <div class="files-list">
+                        <div class="empty-state">
+                            <i class="fa-solid fa-music"></i>
+                            <p>لا توجد ملفات صوتية أو فيديوهات محملة حالياً.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-emails" class="tab-content hidden">
+                <div class="card email-card">
+                    <h3><i class="fa-solid fa-envelope"></i> بريد إلكتروني مؤقت</h3>
+                    <p>صندوق بريد عشوائي لاستقبال رسائل التحقق والمواقع</p>
+                    <div class="temp-email-box">
+                        <span id="temp-email-address">جاري إنشاء بريد...</span>
+                        <button onclick="copyEmail()"><i class="fa-solid fa-copy"></i></button>
+                    </div>
+                    <button class="btn-refresh"><i class="fa-solid fa-rotate"></i> تحديث الصندوق</button>
+                </div>
+            </section>
+
+            <section id="section-games" class="tab-content hidden">
+                <div class="card game-card">
+                    <h3><i class="fa-solid fa-gamepad"></i> صالة الألعاب</h3>
+                    <p>استمتع بالتحدي ضد الذكاء الاصطناعي</p>
+                    <button class="btn-start-game" onclick="openXO()">ابدأ لعبة Tic Tac Toe</button>
+                </div>
+            </section>
+
+        </main>
+
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('files')">
+                <i class="fa-solid fa-folder"></i>
+                <span>الملفات</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('emails')">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>إيميل مؤقت</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('games')">
+                <i class="fa-solid fa-gamepad"></i>
+                <span>الألعاب</span>
+            </button>
+        </nav>
+
     </div>
 
     <script src="app.js"></script>
