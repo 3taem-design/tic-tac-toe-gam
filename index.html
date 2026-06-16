@@ -3,72 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لعبة X-O الذكية</title>
+    <title>AX Tools</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <header class="top-bar">
+        <span>AX Tools</span>
+        <span class="status-badge">متصل</span>
+    </header>
 
-    <div class="container">
-        <div id="auth-screen" class="card">
-            <h2>مرحباً بك في لـعبة X-O</h2>
-            <p class="subtitle">سجل دخولك سريعاً للبدء</p>
-            <button class="btn google-btn" onclick="handleSocialLogin('Google')">
-                <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google">
-                الدخول بواسطة Google
-            </button>
-            <button class="btn apple-btn" onclick="handleSocialLogin('Apple')">
-                <img src="https://cdn-icons-png.flaticon.com/512/0/747.png" alt="Apple">
-                الدخول بواسطة Apple
-            </button>
+    <main id="main-grid" class="grid-container">
+        <div class="card" onclick="loadGame('xo')">
+            <img src="https://cdn-icons-png.flaticon.com/512/2040/2040774.png" alt="XO">
+            <p>تيك تاك تو</p>
         </div>
+        <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3061/3061342.png" alt="Cloud"><p>التحميلات</p></div>
+        <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965279.png" alt="Memory"><p>الذاكرة</p></div>
+    </main>
 
-        <div id="otp-screen" class="card hidden">
-            <h2>رمز التفعيل</h2>
-            <p class="subtitle">أدخل الرمز المرسل إلى بريدك الإلكتروني</p>
-            <input type="text" id="otp-input" placeholder="— — — — — —" maxlength="6">
-            <button class="btn primary-btn" onclick="verifyOTP()">تأكيد الرمز</button>
-        </div>
-
-        <div id="mode-screen" class="card hidden">
-            <h2>اختر نمط اللعب</h2>
-            <p class="subtitle">حدد كيف تريد اللعب اليوم</p>
-            <button class="btn primary-btn" onclick="selectMode('pvp')">لاعب ضد لاعب (شاشة واحدة)</button>
-            <button class="btn primary-btn" onclick="selectMode('ai')">اللعب ضد الكمبيوتر</button>
-        </div>
-
-        <div id="difficulty-screen" class="card hidden">
-            <h2>مستوى الصعوبة</h2>
-            <p class="subtitle">اختر مستوى تحدي الكمبيوتر</p>
-            <button class="btn google-btn" onclick="selectDifficulty('easy')" style="border: 2px solid #334155;">مبتدئ 🌟</button>
-            <button class="btn primary-btn" onclick="selectDifficulty('medium')">محترف 🔥</button>
-            <button class="btn apple-btn" onclick="selectDifficulty('hard')">أسطوري 👑</button>
-        </div>
-
-        <div id="game-screen" class="card hidden">
-            <div class="score-board">
-                <div class="player-score">اللاعب X: <span id="score-x">0</span></div>
-                <div class="player-score">اللاعب O: <span id="score-o">0</span></div>
-            </div>
-            <h3 id="status">دور اللاعب X</h3>
-            
-            <div class="board">
-                <div class="cell" data-index="0"></div>
-                <div class="cell" data-index="1"></div>
-                <div class="cell" data-index="2"></div>
-                <div class="cell" data-index="3"></div>
-                <div class="cell" data-index="4"></div>
-                <div class="cell" data-index="5"></div>
-                <div class="cell" data-index="6"></div>
-                <div class="cell" data-index="7"></div>
-                <div class="cell" data-index="8"></div>
-            </div>
-            
-            <div style="display: flex; gap: 10px;">
-                <button class="btn reset-btn" onclick="resetGame()" style="flex: 1;">إعادة اللعب</button>
-                <button class="btn reset-btn" onclick="backToModes()" style="flex: 1; background: #dc2626;">تغيير النمط</button>
-            </div>
-        </div>
+    <div id="game-wrapper" class="hidden">
+        <button onclick="backToGrid()">رجوع</button>
+        <div id="game-container"></div>
     </div>
 
     <script src="app.js"></script>
