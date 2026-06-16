@@ -1,40 +1,28 @@
-let board = ["", "", "", "", "", "", "", "", ""];
-let turn = "X";
-let gameActive = true;
-
-window.addEventListener('online', () => document.getElementById('status-badge').innerText = "متصل");
-window.addEventListener('offline', () => document.getElementById('status-badge').innerText = "غير متصل");
+let board = Array(9).fill(""), turn = "X", gameActive = false;
 
 function switchScreen(s) {
     document.querySelectorAll('.app-screen').forEach(el => el.classList.add('hidden'));
     document.getElementById(s + '-screen').classList.remove('hidden');
-    document.getElementById('page-title').innerText = s === 'tools' ? 'AX Tools' : s.toUpperCase();
+}
+
+function handleLogin() { document.getElementById("otp-container").classList.remove("hidden"); }
+function handleVerify() { alert("تم التحقق بنجاح!"); switchScreen('tools'); }
+
+function startGame() {
+    document.getElementById("menu-area").classList.add("hidden");
+    document.getElementById("game-area").classList.remove("hidden");
+    gameActive = true;
 }
 
 function makeMove(i) {
     if (board[i] === "" && gameActive) {
         board[i] = turn;
         document.getElementById(`c${i}`).innerText = turn;
-        checkWinner();
-        if (gameActive && document.getElementById("game-mode").value === "cpu" && turn === "X") {
-            turn = "O";
-            setTimeout(cpuMove, 500);
-        } else {
-            turn = turn === "X" ? "O" : "X";
-            document.getElementById("status-text").innerText = "دور: " + turn;
-        }
-    }
-}
-
-function cpuMove() {
-    let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
-    if(emptyCells.length > 0) {
-        let move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        board[move] = "O";
-        document.getElementById(`c${move}`).innerText = "O";
-        checkWinner();
-        turn = "X";
-        document.getElementById("status-text").innerText = "دور: X";
+        document.getElementById(`c${i}`).className = `cell ${turn.toLowerCase()}`;
+        if (checkWinner()) return;
+        turn = (turn === "X") ? "O" : "X";
+        document.getElementById("status-text").innerText = "دور: " + turn;
+        if (document.getElementById("game-mode").value === "cpu" && turn === "O") setTimeout(cpuMove, 500);
     }
 }
 
@@ -43,16 +31,28 @@ function checkWinner() {
     for (let combo of wins) {
         let [a, b, c] = combo;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            document.getElementById("status-text").innerText = "فاز: " + board[a];
-            gameActive = false; return;
+            let winnerName = (board[a] === "O" && document.getElementById("game-mode").value === "cpu") ? "الكمبيوتر" : "اللاعب " + board[a];
+            document.getElementById("status-text").innerText = "فاز: " + winnerName;
+            gameActive = false; return true;
         }
     }
-    if (!board.includes("")) { document.getElementById("status-text").innerText = "تعادل!"; gameActive = false; }
+    if (!board.includes("")) { document.getElementById("status-text").innerText = "تعادل!"; gameActive = false; return true; }
+    return false;
 }
 
 function resetGame() {
-    board = ["", "", "", "", "", "", "", "", ""];
+    board = Array(9).fill("");
     turn = "X"; gameActive = true;
     document.getElementById("status-text").innerText = "دور: X";
-    document.querySelectorAll('.cell').forEach(c => c.innerText = "");
+    document.querySelectorAll('.cell').forEach(c => { c.innerText = ""; c.className = "cell"; });
+}
+
+function cpuMove() {
+    let empty = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+    let move = empty[Math.floor(Math.random() * empty.length)];
+    board[move] = "O";
+    document.getElementById(`c${move}`).innerText = "O";
+    document.getElementById(`c${move}`).className = "cell o";
+    checkWinner(); turn = "X";
+    document.getElementById("status-text").innerText = "دور: X";
 }
