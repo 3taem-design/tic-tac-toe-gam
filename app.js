@@ -1,9 +1,7 @@
-// رابط سيرفر الباك آند الخاص بك على ريندر
 const API_URL = 'https://ax-tools-backend.onrender.com';
 let currentEmail = "";
 
 document.addEventListener("DOMContentLoaded", () => {
-    // التحقق من حالة الدخول السابقة للمستخدم
     const savedEmail = localStorage.getItem("user_email");
     const isVerified = localStorage.getItem("is_verified");
 
@@ -14,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// 1. دالة إرسال الـ OTP عند الضغط على زر الدخول
+// 1. دالة إرسال الـ OTP المحسنة (بدون رسائل منبثقة)
 async function handleLogin() {
     const emailInput = document.getElementById("user-email").value.trim();
     const btnLogin = document.getElementById("btn-login");
@@ -38,8 +36,9 @@ async function handleLogin() {
         const data = await response.json();
 
         if (response.ok && data.success) {
+            // هنا تم الاستغناء عن الـ alert وتحديث حالة الزر مباشرة وظهور الحقل بالأسفل
+            btnLogin.innerText = "تم إرسال الرمز ✅";
             document.getElementById("otp-area").classList.remove("hidden");
-            alert("تم إرسال رمز التحقق! شيك على سجلات (Logs) سيرفر Render.");
         } else {
             alert(data.detail || "حدث خطأ أثناء إرسال الرمز");
             btnLogin.disabled = false;
@@ -79,7 +78,6 @@ async function handleVerify() {
             localStorage.setItem("user_email", currentEmail);
             localStorage.setItem("is_verified", "true");
             
-            // الانتقال للشاشة الرئيسية
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-screen').classList.remove('hidden');
         } else {
@@ -97,26 +95,21 @@ async function handleVerify() {
 
 // 3. دالة التنقل الذكي والآمن بين التبويبات (الشريط السفلي)
 function switchTab(tabName, event) {
-    // إخفاء كل التبويبات
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.add('hidden');
     });
     
-    // إزالة الصفة النشطة من الأزرار
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
     });
 
-    // إظهار التبويب المطلوب
     document.getElementById(`section-${tabName}`).classList.remove('hidden');
     
-    // تلوين الزر المختار بالأزرق بشكل آمن وصحيح
     if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
     }
 }
 
-// دالة مؤقتة لزر تشغيل الـ XO
 function openXO() {
     alert("جاهز لتشغيل لعبة الـ XO! في الخطوة القادمة سنعيد دمج كود مربعات اللعبة القديم هنا لتلعب مباشرة.");
 }
