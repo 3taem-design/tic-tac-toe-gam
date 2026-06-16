@@ -16,8 +16,25 @@ function makeMove(i) {
         board[i] = turn;
         document.getElementById(`c${i}`).innerText = turn;
         checkWinner();
-        turn = turn === "X" ? "O" : "X";
-        if(gameActive) document.getElementById("status-text").innerText = "دور: " + turn;
+        if (gameActive && document.getElementById("game-mode").value === "cpu" && turn === "X") {
+            turn = "O";
+            setTimeout(cpuMove, 500);
+        } else {
+            turn = turn === "X" ? "O" : "X";
+            document.getElementById("status-text").innerText = "دور: " + turn;
+        }
+    }
+}
+
+function cpuMove() {
+    let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+    if(emptyCells.length > 0) {
+        let move = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        board[move] = "O";
+        document.getElementById(`c${move}`).innerText = "O";
+        checkWinner();
+        turn = "X";
+        document.getElementById("status-text").innerText = "دور: X";
     }
 }
 
@@ -26,7 +43,7 @@ function checkWinner() {
     for (let combo of wins) {
         let [a, b, c] = combo;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            document.getElementById("status-text").innerText = "فاز اللاعب: " + board[a];
+            document.getElementById("status-text").innerText = "فاز: " + board[a];
             gameActive = false; return;
         }
     }
@@ -38,33 +55,4 @@ function resetGame() {
     turn = "X"; gameActive = true;
     document.getElementById("status-text").innerText = "دور: X";
     document.querySelectorAll('.cell').forEach(c => c.innerText = "");
-}
-
-// تغيير النمط (تحويل الألوان)
-function toggleTheme() {
-    document.body.classList.toggle('light-mode');
-}
-
-// ذكاء اللعبة
-function makeMove(i) {
-    if (board[i] === "" && gameActive) {
-        board[i] = turn;
-        document.getElementById(`c${i}`).innerText = turn;
-        checkWinner();
-        
-        if (gameActive && document.getElementById("game-mode").value === "cpu") {
-            setTimeout(cpuMove, 500);
-        } else {
-            turn = turn === "X" ? "O" : "X";
-            document.getElementById("status-text").innerText = "دور: " + turn;
-        }
-    }
-}
-
-function cpuMove() {
-    let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
-    let randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-    board[randomCell] = "O";
-    document.getElementById(`c${randomCell}`).innerText = "O";
-    checkWinner();
 }
