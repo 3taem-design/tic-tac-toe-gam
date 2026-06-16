@@ -2,138 +2,84 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AX Tools</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
 
-    <!-- 1. شاشة الدخول بالـ OTP -->
-    <div id="auth-screen" class="screen">
-        <div class="auth-box">
+    <div id="auth-screen" class="app-screen">
+        <div class="auth-container">
             <h2>تسجيل الدخول</h2>
-            <p>ادخل بريدك الإلكتروني لتلقي رمز التحقق</p>
-            <input type="email" id="user-email" placeholder="name@example.com">
-            <button id="btn-login" onclick="handleLogin()">إرسال الرمز 🚀</button>
+            <p>أدخل بريدك الإلكتروني لتلقي رمز التحقق</p>
+            <input type="email" id="email-input" placeholder="example@gmail.com">
+            <button id="login-btn" onclick="handleLogin()">إرسال الرمز</button>
             
-            <div id="otp-area" class="hidden">
-                <input type="text" id="otp-code" placeholder="أدخل الرمز المكون من 6 أرقام">
-                <button id="btn-verify" onclick="handleVerify()">تحقق ودخول</button>
+            <div id="otp-container" class="hidden">
+                <input type="text" id="otp-input" placeholder="أدخل الرمز المكون من 6 أرقام">
+                <button id="verify-btn" onclick="handleVerify()">تحقق ودخول</button>
             </div>
         </div>
     </div>
 
-    <!-- 2. الشاشة الرئيسية للتطبيق -->
-    <div id="main-screen" class="screen hidden">
-        
-        <header class="app-header">
-            <div class="logo">AX Tools</div>
-            <div class="user-status"><i class="fa-solid fa-circle-check"></i> متصل</div>
-        </header>
-
-        <main class="app-content">
+    <div id="files-screen" class="app-screen hidden">
+        <div class="header">
+            <h3>ملفاتي المحملة</h3>
+        </div>
+        <div class="content">
+            <div class="download-box">
+                <h4><i class="fas fa-cloud-download-alt"></i> محمل المقاطع الذكي</h4>
+                <p>يدعم يوتيوب، انستقرام، تيك توك، وسناب شات</p>
+                <div class="input-group">
+                    <input type="text" id="download-url" placeholder="ضع رابط المقطع هنا...">
+                    <button class="action-btn"><i class="fas fa-download"></i></button>
+                </div>
+            </div>
             
-            <!-- قسم 1: مدير الملفات وتصفح اليوتيوب -->
-            <section id="section-files" class="tab-content">
-                <!-- كارت التحميل -->
-                <div class="card downloader-card">
-                    <h3><i class="fa-solid fa-cloud-arrow-down"></i> محمل المقاطع الذكي</h3>
-                    <p>يدعم يوتيوب، انستقرام، تيك توك، وسناب شات</p>
-                    <div class="input-group">
-                        <input type="text" id="download-url" placeholder="ضع رابط المقطع هنا...">
-                        <button id="btn-download"><i class="fa-solid fa-download"></i></button>
-                    </div>
-                </div>
-
-                <!-- كارت تصفح وتشغيل اليوتيوب في الخلفية -->
-                <div class="card youtube-card">
-                    <h3><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> تصفح وتشغيل يوتيوب</h3>
-                    <p>ابحث وشغل مقاطعك المفضلة واستمع لها حتى خارج التطبيق</p>
-                    <div class="input-group">
-                        <input type="text" id="yt-search-query" placeholder="اكتب اسم المقطع أو الأغنية...">
-                        <button onclick="searchYoutube()"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                    <!-- مشغل مخصص مخفي يتم تفعيله عند التشغيل لدعم الخلفية -->
-                    <div id="audio-player-container" class="hidden" style="margin-top: 15px;">
-                        <audio id="bg-audio-player" controls style="width: 100%;"></audio>
-                    </div>
-                </div>
-
-                <div class="files-manager">
-                    <h3><i class="fa-solid fa-folder-open"></i> ملفاتي المحملة</h3>
-                    <div class="files-list">
-                        <div class="empty-state">
-                            <i class="fa-solid fa-music"></i>
-                            <p>لا توجد ملفات محملة حالياً.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- قسم 2: الإيميلات المؤقتة -->
-            <section id="section-emails" class="tab-content hidden">
-                <div class="card email-card">
-                    <h3><i class="fa-solid fa-envelope"></i> بريد إلكتروني مؤقت</h3>
-                    <p>صندوق بريد عشوائي لاستقبال رسائل التحقق والمواقع</p>
-                    <div class="temp-email-box">
-                        <span id="temp-email-address">جاري إنشاء بريد...</span>
-                        <button onclick="copyEmail()"><i class="fa-solid fa-copy"></i></button>
-                    </div>
-                    <button class="btn-refresh" style="margin-top: 15px;"><i class="fa-solid fa-rotate"></i> تحديث الصندوق</button>
-                </div>
-            </section>
-
-            <!-- قسم 3: الألعاب -->
-            <section id="section-games" class="tab-content hidden">
-                <div class="card game-card">
-                    <h3><i class="fa-solid fa-gamepad"></i> صالة الألعاب</h3>
-                    <p>استمتع بالتحدي ضد الذكاء الاصطناعي</p>
-                    <button class="btn-start-game" onclick="openXO()">ابدأ لعبة Tic Tac Toe</button>
-                </div>
-            </section>
-
-            <!-- قسم 4: الدعم وتواصل معنا (الجديد) -->
-            <section id="section-support" class="tab-content hidden">
-                <div class="card info-card">
-                    <h3><i class="fa-solid fa-circle-info"></i> عن منصة AX Tools</h3>
-                    <p style="line-height: 1.6; font-size: 14px;">منصة أدوات متكاملة ومطورة بأحدث التقنيات السحابية لتوفير حلول ذكية وسريعة للمستخدم في مكان واحد؛ بدءاً من التحميل الذكي للمقاطع وتشغيلها بالخلفية، مروراً بحماية الخصوصية بالإيميلات المؤقتة، وحتى الترفيه الخفيف.</p>
-                </div>
-
-                <div class="card contact-card">
-                    <h3><i class="fa-solid fa-headset"></i> الدعم وتواصل معنا</h3>
-                    <p>إذا واجهتك أي مشكلة أو كان لديك اقتراح لتطوير الأداة، يسعدنا تواصلك المباشر:</p>
-                    <div class="developer-info" style="margin-top: 15px; background: #2a2a2a; padding: 15px; border-radius: 10px;">
-                        <p style="margin: 5px 0;"><strong>المطور:</strong> 3u-taem</p>
-                        <p style="margin: 5px 0;"><strong>البريد الإلكتروني:</strong> developer@example.com</p>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-
-        <!-- شريط التنقل السفلي المحدث بـ 4 أزرار -->
-        <nav class="bottom-nav">
-            <button class="nav-item active" onclick="switchTab('files', event)">
-                <i class="fa-solid fa-folder"></i>
-                <span>الملفات</span>
-            </button>
-            <button class="nav-item" onclick="switchTab('emails', event)">
-                <i class="fa-solid fa-envelope-open-text"></i>
-                <span>إيميل مؤقت</span>
-            </button>
-            <button class="nav-item" onclick="switchTab('games', event)">
-                <i class="fa-solid fa-gamepad"></i>
-                <span>الألعاب</span>
-            </button>
-            <button class="nav-item" onclick="switchTab('support', event)">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>المزيد</span>
-            </button>
-        </nav>
-
+            <div class="empty-state">
+                <i class="fas fa-music"></i>
+                <p>لا توجد ملفات محملة حالياً.</p>
+            </div>
+        </div>
     </div>
+
+    <div id="youtube-screen" class="app-screen hidden">
+        <iframe src="https://m.youtube.com" id="youtube-frame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div id="emails-screen" class="app-screen hidden">
+        <div class="header"><h3>إيميل مؤقت</h3></div>
+        <div class="content"><p>ميزة الإيميل المؤقت ستكون متاحة قريباً...</p></div>
+    </div>
+
+    <div id="games-screen" class="app-screen hidden">
+        <div class="header"><h3>الألعاب</h3></div>
+        <div class="content"><p>ميزة الألعاب والتحديات ستكون متاحة قريباً...</p></div>
+    </div>
+
+    <nav id="main-nav" class="bottom-nav hidden">
+        <button class="nav-btn active" id="btn-files" onclick="switchScreen('files')">
+            <i class="fas fa-folder"></i>
+            <span>الملفات</span>
+        </button>
+        
+        <button class="nav-btn" id="btn-youtube" onclick="switchScreen('youtube')">
+            <i class="fab fa-youtube" style="color: #ff0000;"></i>
+            <span>يوتيوب</span>
+        </button>
+        
+        <button class="nav-btn" id="btn-emails" onclick="switchScreen('emails')">
+            <i class="fas fa-envelope"></i>
+            <span>إيميل مؤقت</span>
+        </button>
+        
+        <button class="nav-btn" id="btn-games" onclick="switchScreen('games')">
+            <i class="fas fa-gamepad"></i>
+            <span>الألعاب</span>
+        </button>
+    </nav>
 
     <script src="app.js"></script>
 </body>
