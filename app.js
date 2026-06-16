@@ -39,3 +39,32 @@ function resetGame() {
     document.getElementById("status-text").innerText = "دور: X";
     document.querySelectorAll('.cell').forEach(c => c.innerText = "");
 }
+
+// تغيير النمط (تحويل الألوان)
+function toggleTheme() {
+    document.body.classList.toggle('light-mode');
+}
+
+// ذكاء اللعبة
+function makeMove(i) {
+    if (board[i] === "" && gameActive) {
+        board[i] = turn;
+        document.getElementById(`c${i}`).innerText = turn;
+        checkWinner();
+        
+        if (gameActive && document.getElementById("game-mode").value === "cpu") {
+            setTimeout(cpuMove, 500);
+        } else {
+            turn = turn === "X" ? "O" : "X";
+            document.getElementById("status-text").innerText = "دور: " + turn;
+        }
+    }
+}
+
+function cpuMove() {
+    let emptyCells = board.map((v, i) => v === "" ? i : null).filter(v => v !== null);
+    let randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    board[randomCell] = "O";
+    document.getElementById(`c${randomCell}`).innerText = "O";
+    checkWinner();
+}
