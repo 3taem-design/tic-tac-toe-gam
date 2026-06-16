@@ -1,0 +1,16 @@
+{
+  "name": "لعبة إكس أو الذكية",
+  "short_name": "X-O",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#1e293b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/1023/1023656.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
