@@ -1,28 +1,23 @@
-<div id="auth-screen" class="app-screen">
-    <div class="auth-box">
-        <h3>تسجيل الدخول</h3>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>تسجيل الدخول</h2>
         <input type="email" id="email-input" placeholder="البريد الإلكتروني">
         <button id="send-btn" onclick="startVerification()">إرسال الرمز</button>
+        
         <div id="otp-container" class="hidden">
-            <input type="text" id="otp-input" placeholder="الرمز">
+            <input type="text" id="otp-input" placeholder="أدخل رمز التحقق">
             <button onclick="handleVerify()">تحقق</button>
         </div>
         <p id="status-msg"></p>
     </div>
-</div>
-
-<div id="main-app" class="hidden">
-    <main id="main-grid" class="grid-container">
-        <div class="card" onclick="loadGame('xo')"><p>لعبة X-O</p></div>
-        <div class="card"><p>التحميلات</p></div>
-        <div class="card"><p>الذاكرة</p></div>
-    </main>
-    <div id="game-wrapper" class="hidden">
-        <div id="game-container"></div>
-    </div>
-    <nav class="bottom-nav">
-        <a onclick="backToGrid()">الألعاب</a>
-        <a>الرسائل</a>
-        <a>المزيد</a>
-    </nav>
-</div>
+    <script src="app.js"></script>
+</body>
+</html>
