@@ -1,15 +1,12 @@
 :root { --primary: #007aff; --bg: #0b0b0c; --card: #121214; }
-body { background: var(--bg); color: #fff; font-family: sans-serif; margin: 0; }
-
-/* شريط علوي أنيق */
-#top-bar { background: var(--card); padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--primary); }
-.badge { background: #28a745; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
-
-/* الأيقونات السفلية مع النصوص */
+body { background: var(--bg); color: #fff; margin: 0; font-family: sans-serif; touch-action: manipulation; user-select: none; }
+#top-bar { position: fixed; top: 0; width: 100%; height: 50px; background: var(--card); display: flex; align-items: center; justify-content: space-between; padding: 0 15px; border-bottom: 2px solid var(--primary); z-index: 1000; }
+.badge { background: #28a745; padding: 4px 10px; border-radius: 12px; font-size: 10px; }
+.app-screen { padding-top: 60px; padding-bottom: 80px; height: 100vh; overflow-y: auto; }
 .bottom-nav { position: fixed; bottom: 0; width: 100%; height: 70px; background: var(--card); display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #333; }
 .nav-btn { display: flex; flex-direction: column; align-items: center; color: #888; text-decoration: none; font-size: 10px; }
 .nav-btn i { font-size: 18px; margin-bottom: 4px; color: var(--primary); }
-
-/* تصميم اللعبة المحسن */
-.xo-board { display: grid; grid-template-columns: repeat(3, 90px); gap: 10px; justify-content: center; margin-top: 20px; }
-.cell { width: 90px; height: 90px; background: var(--card); border: 1px solid var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 35px; color: var(--primary); }
+.xo-board { display: grid; grid-template-columns: repeat(3, 80px); gap: 10px; justify-content: center; margin-top: 20px; }
+.cell { width: 80px; height: 80px; background: var(--card); border: 1px solid var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 35px; color: var(--primary); }
+.reset-btn { margin-top: 20px; padding: 10px 20px; background: var(--primary); border: none; border-radius: 5px; color: white; cursor: pointer; }
+.hidden { display: none !important; }
