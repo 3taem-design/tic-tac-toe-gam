@@ -1,11 +1,9 @@
+const API_URL = "https://ax-tools-backend.onrender.com";
+
 function startVerification() {
     const email = document.getElementById("email-input").value;
     const status = document.getElementById("status-msg");
-    if (!email) return alert("أدخل الإيميل");
-    
-    status.innerText = "جاري الإرسال...";
-    // سأضع لك الرابط هنا مباشرة، تأكد من تعديله لرابط سيرفرك لاحقاً
-    fetch("https://ax-tools-backend.onrender.com/auth/social", {
+    fetch(`${API_URL}/auth/social`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email })
@@ -18,16 +16,17 @@ function startVerification() {
 function handleVerify() {
     const email = document.getElementById("email-input").value;
     const code = document.getElementById("otp-input").value;
-    
-    fetch("https://ax-tools-backend.onrender.com/auth/verify", {
+    fetch(`${API_URL}/auth/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email, code: code })
     }).then(res => res.json()).then(data => {
         if (data.success) {
-            alert("تم الدخول بنجاح!");
+            document.getElementById("user-email-display").innerText = email;
+            document.getElementById("auth-screen").classList.add("hidden");
+            document.getElementById("main-app").classList.remove("hidden");
         } else {
-            alert("رمز خاطئ");
+            alert("رمز خاطئ!");
         }
     });
 }
