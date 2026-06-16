@@ -2,30 +2,43 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AX Tools</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header class="top-bar">
-        <span>AX Tools</span>
-        <span class="status-badge">متصل</span>
-    </header>
-
-    <main id="main-grid" class="grid-container">
-        <div class="card" onclick="loadGame('xo')">
-            <img src="https://cdn-icons-png.flaticon.com/512/2040/2040774.png" alt="XO">
-            <p>تيك تاك تو</p>
+    <div id="auth-screen" class="app-screen">
+        <div class="auth-box">
+            <h3>تسجيل الدخول</h3>
+            <input type="email" id="email-input" placeholder="البريد الإلكتروني">
+            <button onclick="handleLogin()">إرسال رمز</button>
+            <div id="otp-container" class="hidden">
+                <input type="text" id="otp-input" placeholder="أدخل الرمز">
+                <button onclick="handleVerify()">تحقق</button>
+            </div>
         </div>
-        <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/3061/3061342.png" alt="Cloud"><p>التحميلات</p></div>
-        <div class="card"><img src="https://cdn-icons-png.flaticon.com/512/2965/2965279.png" alt="Memory"><p>الذاكرة</p></div>
-    </main>
-
-    <div id="game-wrapper" class="hidden">
-        <button onclick="backToGrid()">رجوع</button>
-        <div id="game-container"></div>
     </div>
 
+    <div id="main-app" class="hidden">
+        <div id="top-bar"><span>AX Tools</span><span class="badge">متصل</span></div>
+        
+        <main id="main-grid" class="grid-container">
+            <div class="card" onclick="loadGame('xo')">
+                <i class="fas fa-gamepad"></i><p>X-O</p>
+            </div>
+            <div class="card"><i class="fas fa-cloud-download-alt"></i><p>التحميلات</p></div>
+            <div class="card"><i class="fas fa-brain"></i><p>الذاكرة</p></div>
+        </main>
+
+        <div id="game-wrapper" class="hidden">
+            <div id="game-container"></div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a class="nav-btn" onclick="backToGrid()"><i class="fas fa-th-large"></i><span>الألعاب</span></a>
+            <a class="nav-btn"><i class="fas fa-envelope"></i><span>إيميل</span></a>
+            <a class="nav-btn"><i class="fas fa-cog"></i><span>المزيد</span></a>
+        </nav>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
