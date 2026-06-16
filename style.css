@@ -19,13 +19,13 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    padding-bottom: 60px; /* لترك مساحة لشريط الأدوات */
+    padding-bottom: 60px;
 }
 
 /* شاشة التحقق */
 .auth-container {
     max-width: 400px;
-    margin: 100px auto padding;
+    margin: 100px auto;
     padding: 20px;
     text-align: center;
     background: #121214;
@@ -68,7 +68,7 @@ button {
 .content {
     padding: 20px;
     overflow-y: auto;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 60px);
 }
 
 .download-box {
@@ -101,9 +101,9 @@ button {
 
 .empty-state i { font-size: 50px; margin-bottom: 10px; }
 
-/* شاشة اليوتيوب السحرية */
+/* شاشة اليوتيوب */
 #youtube-screen {
-    padding-bottom: 60px; /* ليبقى شريط الأدوات واضحاً تحتها */
+    padding-bottom: 60px;
 }
 
 #youtube-frame {
