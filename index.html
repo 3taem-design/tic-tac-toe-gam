@@ -62,7 +62,7 @@
                         <span id="temp-email-address">جاري إنشاء بريد...</span>
                         <button onclick="copyEmail()"><i class="fa-solid fa-copy"></i></button>
                     </div>
-                    <button class="btn-refresh"><i class="fa-solid fa-rotate"></i> تحديث الصندوق</button>
+                    <button class="btn-refresh" style="margin-top: 15px;"><i class="fa-solid fa-rotate"></i> تحديث الصندوق</button>
                 </div>
             </section>
 
@@ -77,15 +77,15 @@
         </main>
 
         <nav class="bottom-nav">
-            <button class="nav-item active" onclick="switchTab('files')">
+            <button class="nav-item active" onclick="switchTab('files', event)">
                 <i class="fa-solid fa-folder"></i>
                 <span>الملفات</span>
             </button>
-            <button class="nav-item" onclick="switchTab('emails')">
+            <button class="nav-item" onclick="switchTab('emails', event)">
                 <i class="fa-solid fa-envelope-open-text"></i>
                 <span>إيميل مؤقت</span>
             </button>
-            <button class="nav-item" onclick="switchTab('games')">
+            <button class="nav-item" onclick="switchTab('games', event)">
                 <i class="fa-solid fa-gamepad"></i>
                 <span>الألعاب</span>
             </button>
