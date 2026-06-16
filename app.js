@@ -1,4 +1,4 @@
-const API_URL = 'https://رابط-مشروعك-الجديد.onrender.com';
+const API_URL = 'https://ax-tools-backend.onrender.com';
 let currentEmail = "";
 let gameMode = ""; 
 let aiDifficulty = ""; 
