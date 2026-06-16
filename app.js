@@ -10,9 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('auth-screen').classList.add('hidden');
         document.getElementById('main-screen').classList.remove('hidden');
     }
+    
+    // إعداد مشغل الخلفية ومزامنة شاشة القفل عند بدء أي صوت
+    setupMediaSession();
 });
 
-// 1. دالة إرسال الـ OTP المحسنة (بدون رسائل منبثقة)
+// 1. دالة إرسال الـ OTP المحسنة
 async function handleLogin() {
     const emailInput = document.getElementById("user-email").value.trim();
     const btnLogin = document.getElementById("btn-login");
@@ -36,7 +39,6 @@ async function handleLogin() {
         const data = await response.json();
 
         if (response.ok && data.success) {
-            // هنا تم الاستغناء عن الـ alert وتحديث حالة الزر مباشرة وظهور الحقل بالأسفل
             btnLogin.innerText = "تم إرسال الرمز ✅";
             document.getElementById("otp-area").classList.remove("hidden");
         } else {
@@ -93,7 +95,7 @@ async function handleVerify() {
     }
 }
 
-// 3. دالة التنقل الذكي والآمن بين التبويبات (الشريط السفلي)
+// 3. دالة التنقل الذكي والآمن بين التبويبات
 function switchTab(tabName, event) {
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.add('hidden');
@@ -107,6 +109,49 @@ function switchTab(tabName, event) {
     
     if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
+    }
+}
+
+// 4. دالة البحث وتصفح اليوتيوب وتشغيله في الخلفية
+async function searchYoutube() {
+    const query = document.getElementById("yt-search-query").value.trim();
+    if (!query) {
+        alert("الرجاء كتابة اسم المقطع للبحث عنه");
+        return;
+    }
+    
+    alert("جاري البحث... عند ربط الباك آند بالخطوة القادمة، سيقوم السيرفر باستخراج الصوت وتشغيله فوراً بالخلفية هنا.");
+    
+    // مثال تشغيلي تجريبي لكيف يعمل مشغل الصوت بالخلفية
+    const playerContainer = document.getElementById("audio-player-container");
+    const audioPlayer = document.getElementById("bg-audio-player");
+    
+    playerContainer.classList.remove("hidden");
+    // نضع هنا دفق الصوت المستخرج من يوتيوب مستقبلاً
+    audioPlayer.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; 
+    audioPlayer.play();
+    
+    // تحديث بيانات شاشة قفل الجوال تلقائياً
+    if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: query,
+            artist: 'AX Tools - تشغيل في الخلفية',
+            album: 'منصة تصفح وتحميل المقاطع',
+            artwork: [
+                { src: 'icon-512.png', sizes: '512x512', type: 'image/png' }
+            ]
+        });
+    }
+}
+
+// 5. ربط أزرار التحكم لشاشة القفل بالجوال (تشغيل في الخلفية)
+function setupMediaSession() {
+    if ('mediaSession' in navigator) {
+        const audioPlayer = document.getElementById("bg-audio-player");
+        if(!audioPlayer) return;
+
+        navigator.mediaSession.setActionHandler('play', () => { audioPlayer.play(); });
+        navigator.mediaSession.setActionHandler('pause', () => { audioPlayer.pause(); });
     }
 }
 
