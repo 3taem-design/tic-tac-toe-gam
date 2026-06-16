@@ -1,11 +1,8 @@
-:root { --bg: #0f172a; --card: #1e293b; --primary: #38bdf8; }
+:root { --bg: #0b0b0c; --card: #121214; --primary: #007aff; }
 body { background: var(--bg); color: #fff; font-family: sans-serif; margin: 0; }
-.top-bar { padding: 15px; background: var(--card); display: flex; justify-content: space-between; }
-.grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; }
-.card { background: var(--card); padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; }
-.card img { width: 50px; display: block; margin: 0 auto 10px; }
 .hidden { display: none !important; }
-.back-btn { margin: 10px; padding: 10px 20px; background: var(--primary); border: none; border-radius: 5px; color: white; cursor: pointer; }
-.board { display: grid; grid-template-columns: repeat(3, 80px); gap: 5px; justify-content: center; margin-top: 20px; }
-.cell { width: 80px; height: 80px; background: var(--card); border: 1px solid var(--primary); display: flex; align-items: center; justify-content: center; font-size: 40px; cursor: pointer; }
-.cell.X { color: #ef4444; } .cell.O { color: #10b981; }
+.auth-box { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.grid-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; }
+.card { background: var(--card); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
+.bottom-nav { position: fixed; bottom: 0; width: 100%; height: 60px; background: var(--card); display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #333; }
+.top-bar { padding: 15px; background: var(--card); display: flex; justify-content: space-between; border-bottom: 2px solid var(--primary); }
