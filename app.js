@@ -230,3 +230,20 @@ function resetGame() {
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js');
 }
+
+function switchTab(tabName) {
+    // إخفاء كل التبويبات أولاً
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+    });
+    // إزالة اللون الأزرق النشط من أزرار التنقل
+    document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // إظهار التبويب المختار
+    document.getElementById(`section-${tabName}`).classList.remove('hidden');
+    
+    // تلوين الزر المختار بالأزرق
+    event.currentTarget.classList.add('active');
+}
