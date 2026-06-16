@@ -10,6 +10,7 @@
 </head>
 <body>
 
+    <!-- 1. شاشة الدخول بالـ OTP -->
     <div id="auth-screen" class="screen">
         <div class="auth-box">
             <h2>تسجيل الدخول</h2>
@@ -24,6 +25,7 @@
         </div>
     </div>
 
+    <!-- 2. الشاشة الرئيسية للتطبيق -->
     <div id="main-screen" class="screen hidden">
         
         <header class="app-header">
@@ -33,7 +35,9 @@
 
         <main class="app-content">
             
+            <!-- قسم 1: مدير الملفات وتصفح اليوتيوب -->
             <section id="section-files" class="tab-content">
+                <!-- كارت التحميل -->
                 <div class="card downloader-card">
                     <h3><i class="fa-solid fa-cloud-arrow-down"></i> محمل المقاطع الذكي</h3>
                     <p>يدعم يوتيوب، انستقرام، تيك توك، وسناب شات</p>
@@ -43,17 +47,32 @@
                     </div>
                 </div>
 
+                <!-- كارت تصفح وتشغيل اليوتيوب في الخلفية -->
+                <div class="card youtube-card">
+                    <h3><i class="fa-brands fa-youtube" style="color: #ff0000;"></i> تصفح وتشغيل يوتيوب</h3>
+                    <p>ابحث وشغل مقاطعك المفضلة واستمع لها حتى خارج التطبيق</p>
+                    <div class="input-group">
+                        <input type="text" id="yt-search-query" placeholder="اكتب اسم المقطع أو الأغنية...">
+                        <button onclick="searchYoutube()"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                    <!-- مشغل مخصص مخفي يتم تفعيله عند التشغيل لدعم الخلفية -->
+                    <div id="audio-player-container" class="hidden" style="margin-top: 15px;">
+                        <audio id="bg-audio-player" controls style="width: 100%;"></audio>
+                    </div>
+                </div>
+
                 <div class="files-manager">
                     <h3><i class="fa-solid fa-folder-open"></i> ملفاتي المحملة</h3>
                     <div class="files-list">
                         <div class="empty-state">
                             <i class="fa-solid fa-music"></i>
-                            <p>لا توجد ملفات صوتية أو فيديوهات محملة حالياً.</p>
+                            <p>لا توجد ملفات محملة حالياً.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- قسم 2: الإيميلات المؤقتة -->
             <section id="section-emails" class="tab-content hidden">
                 <div class="card email-card">
                     <h3><i class="fa-solid fa-envelope"></i> بريد إلكتروني مؤقت</h3>
@@ -66,6 +85,7 @@
                 </div>
             </section>
 
+            <!-- قسم 3: الألعاب -->
             <section id="section-games" class="tab-content hidden">
                 <div class="card game-card">
                     <h3><i class="fa-solid fa-gamepad"></i> صالة الألعاب</h3>
@@ -74,8 +94,26 @@
                 </div>
             </section>
 
+            <!-- قسم 4: الدعم وتواصل معنا (الجديد) -->
+            <section id="section-support" class="tab-content hidden">
+                <div class="card info-card">
+                    <h3><i class="fa-solid fa-circle-info"></i> عن منصة AX Tools</h3>
+                    <p style="line-height: 1.6; font-size: 14px;">منصة أدوات متكاملة ومطورة بأحدث التقنيات السحابية لتوفير حلول ذكية وسريعة للمستخدم في مكان واحد؛ بدءاً من التحميل الذكي للمقاطع وتشغيلها بالخلفية، مروراً بحماية الخصوصية بالإيميلات المؤقتة، وحتى الترفيه الخفيف.</p>
+                </div>
+
+                <div class="card contact-card">
+                    <h3><i class="fa-solid fa-headset"></i> الدعم وتواصل معنا</h3>
+                    <p>إذا واجهتك أي مشكلة أو كان لديك اقتراح لتطوير الأداة، يسعدنا تواصلك المباشر:</p>
+                    <div class="developer-info" style="margin-top: 15px; background: #2a2a2a; padding: 15px; border-radius: 10px;">
+                        <p style="margin: 5px 0;"><strong>المطور:</strong> 3u-taem</p>
+                        <p style="margin: 5px 0;"><strong>البريد الإلكتروني:</strong> developer@example.com</p>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
+        <!-- شريط التنقل السفلي المحدث بـ 4 أزرار -->
         <nav class="bottom-nav">
             <button class="nav-item active" onclick="switchTab('files', event)">
                 <i class="fa-solid fa-folder"></i>
@@ -88,6 +126,10 @@
             <button class="nav-item" onclick="switchTab('games', event)">
                 <i class="fa-solid fa-gamepad"></i>
                 <span>الألعاب</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('support', event)">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>المزيد</span>
             </button>
         </nav>
 
