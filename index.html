@@ -6,6 +6,7 @@
     <title>AX Tools</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
     <div id="top-bar">
@@ -14,23 +15,22 @@
     </div>
 
     <div id="tools-screen" class="app-screen">
-        <div class="content"><h3>الأدوات</h3><p>قريباً...</p></div>
+        <div class="content"><h3>خانة الأدوات</h3><p>قريباً...</p></div>
     </div>
-
     <div id="emails-screen" class="app-screen hidden">
         <div class="content"><h3>الإيميلات</h3></div>
     </div>
-
     <div id="games-screen" class="app-screen hidden">
-        <div class="content" id="game-container">
+        <div class="content" style="text-align: center;">
+            <h3 id="status-text">دور: X</h3>
             <div class="xo-board" id="board">
-                <div class="cell" onclick="makeMove(0)"></div><div class="cell" onclick="makeMove(1)"></div><div class="cell" onclick="makeMove(2)"></div>
-                <div class="cell" onclick="makeMove(3)"></div><div class="cell" onclick="makeMove(4)"></div><div class="cell" onclick="makeMove(5)"></div>
-                <div class="cell" onclick="makeMove(6)"></div><div class="cell" onclick="makeMove(7)"></div><div class="cell" onclick="makeMove(8)"></div>
+                <div class="cell" onclick="makeMove(0)" id="c0"></div><div class="cell" onclick="makeMove(1)" id="c1"></div><div class="cell" onclick="makeMove(2)" id="c2"></div>
+                <div class="cell" onclick="makeMove(3)" id="c3"></div><div class="cell" onclick="makeMove(4)" id="c4"></div><div class="cell" onclick="makeMove(5)" id="c5"></div>
+                <div class="cell" onclick="makeMove(6)" id="c6"></div><div class="cell" onclick="makeMove(7)" id="c7"></div><div class="cell" onclick="makeMove(8)" id="c8"></div>
             </div>
+            <button onclick="resetGame()" style="margin-top: 20px; padding: 10px; width: 150px;">إعادة اللعبة</button>
         </div>
     </div>
-
     <div id="about-screen" class="app-screen hidden">
         <div class="content"><h3>المزيد</h3><p>تطوير: سمير</p></div>
     </div>
@@ -41,7 +41,6 @@
         <button onclick="switchScreen('games')"><i class="fas fa-gamepad"></i></button>
         <button onclick="switchScreen('about')"><i class="fas fa-ellipsis-h"></i></button>
     </nav>
-
     <script src="app.js"></script>
 </body>
 </html>
