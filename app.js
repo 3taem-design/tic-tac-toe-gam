@@ -95,8 +95,8 @@ async function handleVerify() {
     }
 }
 
-// 3. دالة التنقل الذكي بين التبويبات (الشريط السفلي)
-function switchTab(tabName) {
+// 3. دالة التنقل الذكي والآمن بين التبويبات (الشريط السفلي)
+function switchTab(tabName, event) {
     // إخفاء كل التبويبات
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.add('hidden');
@@ -107,12 +107,20 @@ function switchTab(tabName) {
         item.classList.remove('active');
     });
 
-    // إظهار التبويب المطلوب وتلوين الزر الخاص به
+    // إظهار التبويب المطلوب
     document.getElementById(`section-${tabName}`).classList.remove('hidden');
-    event.currentTarget.classList.add('active');
+    
+    // تلوين الزر المختار بالأزرق بشكل آمن وصحيح
+    if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+    }
 }
 
 // دالة مؤقتة لزر تشغيل الـ XO
 function openXO() {
     alert("جاهز لتشغيل لعبة الـ XO! في الخطوة القادمة سنعيد دمج كود مربعات اللعبة القديم هنا لتلعب مباشرة.");
+}
+
+function copyEmail() {
+    alert("سيتم تفعيل خاصية النسخ التلقائي فور ربط سيرفر الإيميلات المؤقتة.");
 }
