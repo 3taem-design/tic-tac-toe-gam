@@ -1,142 +1,134 @@
 :root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-color: #f8fafc;
-    --primary: #38bdf8;
-    --accent-x: #ef4444;
-    --accent-o: #10b981;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --accent-color: #2f80ed;
+    --text-color: #ffffff;
+    --text-muted: #aaaaaa;
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-.container {
-    width: 100%;
-    max-width: 450px;
-}
-
-.card {
-    background: var(--card-bg);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    transition: all 0.3s ease;
+    flex-direction: column;
 }
 
 .hidden { display: none !important; }
-h2 { margin-bottom: 10px; font-size: 24px; }
-.subtitle { color: #94a3b8; margin-bottom: 25px; font-size: 14px; }
 
-.btn {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-bottom: 15px;
+/* الهيدر */
+.app-header {
+    background-color: var(--card-bg);
+    padding: 15px 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    transition: transform 0.2s;
+    border-bottom: 1px solid #2d2d2d;
+    font-weight: bold;
 }
-.btn:active { transform: scale(0.98); }
+.user-status { color: #27ae60; font-size: 14px; }
 
-.google-btn { background: #ffffff; color: #1e293b; }
-.apple-btn { background: #000000; color: #ffffff; }
-.primary-btn { background: var(--primary); color: #0f172a; }
-.reset-btn { background: #475569; color: white; margin-top: 20px; }
+/* المحتوى والبطاقات */
+.app-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    padding-bottom: 90px; /* مسافة للشريط السفلي */
+}
 
-.btn img { width: 20px; height: 20px; }
-
-#otp-input {
-    width: 100%;
-    padding: 15px;
-    background: #0f172a;
-    border: 2px solid #334155;
-    border-radius: 12px;
-    color: white;
-    font-size: 22px;
-    text-align: center;
-    letter-spacing: 8px;
+.card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* تصميم لوحة اللعبة */
-.score-board {
+.card h3 { margin-top: 0; display: flex; align-items: center; gap: 10px; color: var(--accent-color); }
+.card p { color: var(--text-muted); font-size: 14px; }
+
+/* خانات الإدخال والأزرار */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+input[type="text"], input[type="email"] {
+    flex: 1;
+    background: #2a2a2a;
+    border: 1px solid #3d3d3d;
+    padding: 12px;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+}
+
+button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+/* مدير الملفات */
+.empty-state {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-muted);
+}
+.empty-state i { font-size: 48px; margin-bottom: 10px; opacity: 0.5; }
+
+/* شريط التنقل السفلي */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: var(--card-bg);
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
-}
-.player-score {
-    background: #0f172a;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-#status { margin-bottom: 15px; color: var(--primary); }
-
-.board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    background: #334155;
-    padding: 10px;
-    border-radius: 15px;
-    position: relative; /* ضروري لجعل خط الفوز يطفو فوق المربعات */
-}
-
-.cell {
-    aspect-ratio: 1;
-    background: var(--card-bg);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-    z-index: 2;
-}
-.cell:hover { background: #334155; }
-.cell.X { color: var(--accent-x); }
-.cell.O { color: var(--accent-o); }
-
-/* إعدادات وتحديد اتجاهات خط الفوز الذهبي */
-.winning-line {
-    position: absolute;
-    background-color: #f59e0b; /* لون ذهبي */
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    z-index: 10;
-    display: none;
+    border-top: 1px solid #2d2d2d;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
 }
 
-.line-horizontal-0 { display: block; top: 16%; left: 5%; width: 90%; height: 6px; }
-.line-horizontal-1 { display: block; top: 50%; left: 5%; width: 90%; height: 6px; }
-.line-horizontal-2 { display: block; top: 83%; left: 5%; width: 90%; height: 6px; }
+.nav-item {
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    gap: 5px;
+    padding: 5px;
+}
 
-.line-vertical-0 { display: block; left: 16%; top: 5%; height: 90%; width: 6px; }
-.line-vertical-1 { display: block; left: 50%; top: 5%; height: 90%; width: 6px; }
-.line-vertical-2 { display: block; left: 83%; top: 5%; height: 90%; width: 6px; }
+.nav-item i { font-size: 20px; }
+.nav-item.active { color: var(--accent-color); }
 
-.line-diagonal-0 { display: block; top: 50%; left: 5%; width: 90%; height: 6px; transform: rotate(-45deg); transform-origin: center; }
-.line-diagonal-1 { display: block; top: 50%; left: 5%; width: 90%; height: 6px; transform: rotate(45deg); transform-origin: center; }
+/* شاشة الدخول وسط الصفحة */
+.auth-box {
+    margin: auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    text-align: center;
+}
