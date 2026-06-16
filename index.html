@@ -1,19 +1,49 @@
-<nav class="bottom-nav">
-    <a href="#" class="nav-btn" onclick="switchScreen('tools')"><i class="fas fa-tools"></i>أدوات</a>
-    <a href="#" class="nav-btn" onclick="switchScreen('emails')"><i class="fas fa-envelope"></i>إيميلات</a>
-    <a href="#" class="nav-btn" onclick="switchScreen('games')"><i class="fas fa-gamepad"></i>ألعاب</a>
-    <a href="#" class="nav-btn" onclick="switchScreen('about')"><i class="fas fa-ellipsis-h"></i>المزيد</a>
-</nav>
-
-<div id="games-screen" class="app-screen hidden">
-    <div class="content">
-        <select id="game-mode" onchange="resetGame()">
-            <option value="cpu">ضد الكمبيوتر</option>
-            <option value="pvp">لاعب ضد لاعب</option>
-        </select>
-        <h3 id="status-text">دور: X</h3>
-        <div class="xo-board" id="board">
-            </div>
-        <button onclick="resetGame()">إعادة</button>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AX Tools</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="top-bar">
+        <span id="status-badge" class="badge">متصل</span>
+        <h4 id="page-title">AX Tools</h4>
     </div>
-</div>
+
+    <div id="tools-screen" class="app-screen">
+        <div class="content"><h3>خانة الأدوات</h3><p>جاهزة للإضافة...</p></div>
+    </div>
+    <div id="emails-screen" class="app-screen hidden">
+        <div class="content"><h3>الإيميلات</h3></div>
+    </div>
+    <div id="games-screen" class="app-screen hidden">
+        <div class="content xo-container">
+            <select id="game-mode" onchange="resetGame()">
+                <option value="cpu">ضد الكمبيوتر</option>
+                <option value="pvp">لاعب ضد لاعب</option>
+            </select>
+            <h3 id="status-text">دور: X</h3>
+            <div class="xo-board" id="board">
+                <div class="cell" onclick="makeMove(0)" id="c0"></div><div class="cell" onclick="makeMove(1)" id="c1"></div><div class="cell" onclick="makeMove(2)" id="c2"></div>
+                <div class="cell" onclick="makeMove(3)" id="c3"></div><div class="cell" onclick="makeMove(4)" id="c4"></div><div class="cell" onclick="makeMove(5)" id="c5"></div>
+                <div class="cell" onclick="makeMove(6)" id="c6"></div><div class="cell" onclick="makeMove(7)" id="c7"></div><div class="cell" onclick="makeMove(8)" id="c8"></div>
+            </div>
+            <button class="reset-btn" onclick="resetGame()">إعادة اللعبة</button>
+        </div>
+    </div>
+    <div id="about-screen" class="app-screen hidden">
+        <div class="content"><h3>المزيد</h3><p>تطوير: سمير</p></div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-btn" onclick="switchScreen('tools')"><i class="fas fa-tools"></i><span>أدوات</span></a>
+        <a href="#" class="nav-btn" onclick="switchScreen('emails')"><i class="fas fa-envelope"></i><span>إيميلات</span></a>
+        <a href="#" class="nav-btn" onclick="switchScreen('games')"><i class="fas fa-gamepad"></i><span>ألعاب</span></a>
+        <a href="#" class="nav-btn" onclick="switchScreen('about')"><i class="fas fa-ellipsis-h"></i><span>المزيد</span></a>
+    </nav>
+    <script src="app.js"></script>
+</body>
+</html>
