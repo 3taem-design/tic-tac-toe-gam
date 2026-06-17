@@ -1,12 +1,8 @@
 const API_URL = "https://ax-tools-backend.onrender.com";
 
-// التحقق من حالة الدخول عند تحميل الصفحة
 window.onload = () => {
-    const isVerified = localStorage.getItem("isVerified");
-    const userEmail = localStorage.getItem("userEmail");
-    
-    if (isVerified === "true") {
-        showApp(userEmail);
+    if (localStorage.getItem("isVerified") === "true") {
+        showApp(localStorage.getItem("userEmail"));
     }
 };
 
@@ -16,17 +12,25 @@ function showApp(email) {
     document.getElementById("main-app").classList.remove("hidden");
 }
 
+function startVerification() {
+    const email = document.getElementById("email-input").value;
+    fetch(`${API_URL}/auth/social`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email })
+    }).then(() => {
+        document.getElementById("otp-container").classList.remove("hidden");
+    });
+}
+
 function handleVerify() {
     const email = document.getElementById("email-input").value;
     const code = document.getElementById("otp-input").value;
-    
     fetch(`${API_URL}/auth/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code })
-    })
-    .then(res => res.json())
-    .then(data => {
+        body: JSON.stringify({ email: email, code: code })
+    }).then(res => res.json()).then(data => {
         if (data.success) {
             localStorage.setItem("isVerified", "true");
             localStorage.setItem("userEmail", email);
@@ -39,5 +43,5 @@ function handleVerify() {
 
 function logout() {
     localStorage.clear();
-    location.reload(); // إعادة تحميل الصفحة للرجوع لشاشة الدخول
+    location.reload();
 }
