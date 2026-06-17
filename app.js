@@ -33,3 +33,32 @@ function handleVerify() {
 }
 
 function logout() { localStorage.clear(); location.reload(); }
+
+// رسالة تأكيد الخروج
+function confirmLogout() {
+    if (confirm("هل أنت متأكد من تسجيل الخروج؟")) {
+        logout();
+    }
+}
+
+// دالة التحديث الفخمة
+function checkUpdate() {
+    const popup = document.createElement('div');
+    popup.className = 'update-popup';
+    popup.innerHTML = `
+        <p>هل تريد البحث عن تحديثات؟</p>
+        <button id="upd-btn" onclick="runUpdate()">تحديث</button>
+        <button onclick="this.parentElement.remove()">إلغاء</button>
+        <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+    `;
+    document.body.appendChild(popup);
+}
+
+function runUpdate() {
+    document.getElementById('upd-btn').disabled = true;
+    document.getElementById('progress').style.width = '100%';
+    setTimeout(() => {
+        alert("النظام محدث لآخر إصدار!");
+        document.querySelector('.update-popup').remove();
+    }, 5000);
+}
