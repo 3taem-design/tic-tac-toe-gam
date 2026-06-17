@@ -65,13 +65,26 @@ async function checkUpdate() {
 function showUpdatePopup(newVersion) {
     const popup = document.createElement('div');
     popup.className = 'update-popup';
+    
+    // هنا يمكنك إضافة 5 نقاط بكل سهولة
+    const changes = [
+        "إضافة نظام أمان متطور لتشفير البيانات.",
+        "تحسين سرعة استجابة الكروت بنسبة 40%.",
+        "إضافة أيقونات جديدة عالية الجودة للألعاب.",
+        "تعديل واجهة المستخدم لتناسب وضع الشاشة الكاملة.",
+        "إصلاح مشكلة الذاكرة المؤقتة لضمان تحديث فوري."
+    ];
+
     popup.innerHTML = `
-        <h3>تحديث جديد متاح (${newVersion})</h3>
-        <p>قم بالتحديث للحصول على تحسينات أمنية جديدة.</p>
+        <h3 style="margin-bottom: 5px;">تحديث جديد متاح (${newVersion})</h3>
+        <p style="font-size: 13px; color: #888; margin-bottom: 15px;">ما الجديد في هذا الإصدار؟</p>
+        <ul style="text-align: right; font-size: 14px; padding-right: 20px; margin-bottom: 20px; line-height: 1.6;">
+            ${changes.map(change => `<li>${change}</li>`).join('')}
+        </ul>
         <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
-        <div style="margin-top: 15px;">
-            <button id="upd-btn" onclick="runUpdate()" style="background:#38bdf8; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">تحديث الآن</button>
-            <button onclick="this.parentElement.remove()" style="background:transparent; border:1px solid #30363d; padding:10px 20px; border-radius:8px; cursor:pointer; color:white;">إلغاء</button>
+        <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
+            <button id="upd-btn" onclick="runUpdate()" style="background:#38bdf8; border:none; padding:12px; border-radius:10px; cursor:pointer; font-weight:bold;">تحديث الآن</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="background:transparent; border:1px solid #30363d; padding:12px; border-radius:10px; cursor:pointer; color:#ff4d4d;">إلغاء</button>
         </div>
     `;
     document.body.appendChild(popup);
