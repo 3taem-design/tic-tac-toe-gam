@@ -22,3 +22,32 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
 }
 .progress-bar { height: 5px; background: #30363d; margin-top: 10px; overflow: hidden; }
 .progress-fill { height: 100%; background: #38bdf8; width: 0%; transition: width 5s linear; }
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around; /* توزيع متساوي */
+    align-items: center;
+    padding: 10px 5px; /* تقليل الحواف الجانبية لترك مساحة */
+    background: #0f172a;
+    border-top: 1px solid #1e293b;
+    height: 60px; /* تحديد ارتفاع ثابت للبار */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column; /* جعل الأيقونة فوق النص */
+    align-items: center;    /* توسيط النص والأيقونة في المنتصف */
+    justify-content: center;
+    text-align: center;     /* ضمان توسيط النص */
+    flex: 1;                /* أخذ مساحة متساوية */
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-icon {
+    width: 24px;   /* تصغير الأيقونة قليلاً لتناسب */
+    height: 24px;
+    object-fit: contain;
+    margin-bottom: 2px;
+}
