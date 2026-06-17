@@ -74,3 +74,11 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
     height: 85px;
     object-fit: contain;
 }
+
+
+/* إخفاء نصوص الكروت */
+.card span {
+    display: none;
+}
+
+
