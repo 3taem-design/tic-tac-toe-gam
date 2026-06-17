@@ -45,11 +45,18 @@ function confirmLogout() {
 function checkUpdate() {
     const popup = document.createElement('div');
     popup.className = 'update-popup';
+    // تفاصيل التحديث: يمكنك تغيير هذه النصوص لاحقاً كما تحب
+    const version = "v1.2.4"; 
+    const changes = "• تحسينات أمنية للنظام.\n• إصلاح أخطاء واجهة المستخدم.\n• سرعة أكبر في التحميل.";
+    
     popup.innerHTML = `
-        <p>هل تريد البحث عن تحديثات؟</p>
-        <button id="upd-btn" onclick="runUpdate()">تحديث</button>
-        <button onclick="this.parentElement.remove()">إلغاء</button>
+        <h3 style="margin-top:0">تحديث جديد متاح (${version})</h3>
+        <p style="text-align: right; font-size: 14px; white-space: pre-line;">${changes}</p>
         <div class="progress-bar"><div id="progress" class="progress-fill"></div></div>
+        <div style="margin-top: 15px;">
+            <button id="upd-btn" onclick="runUpdate()" style="background:#38bdf8; border:none; padding:10px 20px; border-radius:8px; cursor:pointer;">تحديث الآن</button>
+            <button onclick="this.parentElement.remove()" style="background:transparent; border:1px solid #30363d; padding:10px 20px; border-radius:8px; cursor:pointer; color:white;">إلغاء</button>
+        </div>
     `;
     document.body.appendChild(popup);
 }
