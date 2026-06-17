@@ -2,17 +2,16 @@
 body { background: var(--bg); color: var(--text); font-family: sans-serif; margin: 0; padding-bottom: 80px; }
 .hidden { display: none !important; }
 
-/* الدخول */
 .auth-screen { height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
 .auth-box { background: var(--card-bg); padding: 2rem; border-radius: 15px; width: 100%; max-width: 400px; text-align: center; }
-input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; box-sizing: border-box; background: #334155; color: white; }
+input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #334155; color: white; box-sizing: border-box; }
 button { width: 100%; padding: 12px; background: var(--primary); border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
-/* الرئيسية */
-.top-bar { padding: 20px; display: flex; justify-content: space-between; font-weight: bold; }
+.top-bar { padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+.logout-btn { background: none; color: #ff4d4d; width: auto; font-size: 0.9rem; }
 .welcome-banner { background: var(--card-bg); margin: 15px; padding: 15px; border-radius: 12px; border-left: 4px solid var(--primary); }
 .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
 .card { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #334155; }
 
-/* الناف */
-.bottom-nav { position: fixed; bottom: 0; width: 100%; height: 70px; background: #020617; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #334155; }
+.bottom-nav { position: fixed; bottom: 0; width: 100%; height: 75px; background: #111827; display: flex; justify-content: space-around; align-items: center; border-top: 1px solid #374151; padding-bottom: 5px; }
+.nav-item { text-align: center; font-size: 0.75rem; color: #94a3b8; cursor: pointer; }
