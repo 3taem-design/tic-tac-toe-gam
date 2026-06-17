@@ -42,7 +42,7 @@ function confirmLogout() {
 }
 
 // المتغير الحالي للتطبيق
-const CURRENT_VERSION = "v.1.2.9"; 
+const CURRENT_VERSION = "v.1.2.4"; 
 
 async function checkUpdate() {
     try {
