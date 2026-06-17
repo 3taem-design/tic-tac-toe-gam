@@ -61,19 +61,16 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
 
 .card {
     background: #1e293b;
-    padding: 20px;
+    padding: 25px; /* زيادة الحشوة لتعويض غياب النص */
     border-radius: 15px;
     display: flex;
-    flex-direction: column; /* جعل الأيقونة فوق النص */
-    align-items: center;    /* توسيط أفقي */
-    justify-content: center; /* توسيط عمودي */
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     color: white;
 }
 
 .card-icon {
-    width: 50px; /* حجم الأيقونة في الكرت */
-    height: 50px;
+    width: 85px;  /* زيادة الحجم لتملأ الفراغ */
+    height: 85px;
     object-fit: contain;
-    margin-bottom: 10px; /* مسافة بين الأيقونة والنص */
 }
