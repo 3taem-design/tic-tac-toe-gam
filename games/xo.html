@@ -1,7 +1,21 @@
-<div class="game-board">
-    </div>
-
-<div class="game-controls">
-    <button onclick="resetGame()">إعادة اللعبة</button>
-    <button onclick="location.href='games_list.html'">تغيير نمط اللعب</button>
+<div id="setup-screen">
+    <button onclick="setMode('pvp')">لاعب ضد لاعب</button>
+    <button onclick="showLevels()">ضد الكمبيوتر</button>
 </div>
+
+<div id="levels-screen" class="hidden">
+    <button onclick="startXO('easy')">مبتدئ</button>
+    <button onclick="startXO('medium')">محترف</button>
+    <button onclick="startXO('hard')">أسطوري</button>
+</div>
+
+<div id="game-screen" class="hidden">
+    <div id="board"></div>
+    <button onclick="resetGame()">إعادة اللعبة</button>
+    <button onclick="location.href='games_list.html'">تغيير النمط</button>
+</div>
+
+<nav class="bottom-nav">
+    <div class="nav-item" onclick="location.href='../index.html'">الرئيسية</div>
+</nav>
+<script src="xo.js"></script>
