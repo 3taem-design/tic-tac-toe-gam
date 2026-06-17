@@ -69,6 +69,11 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
     color: white;
 }
 
+.card:active {
+    transform: scale(0.95); /* تأثير لمسة خفيفة */
+    transition: 0.1s;
+}
+
 .card-icon {
     width: 85px;  /* زيادة الحجم لتملأ الفراغ */
     height: 85px;
