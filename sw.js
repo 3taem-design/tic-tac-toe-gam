@@ -14,7 +14,10 @@ const ASSETS = [
     'icons/icon-settings.png',
     'icons/icon-tools.png',
     'icons/icon-trading.png',
-    'icons/icon-user.png'
+    'icons/icon-user.png',
+    'games/games_list.html',
+    'games/xo.html',
+    'games/xo.js'
 ];
 
 // تثبيت الكاش
