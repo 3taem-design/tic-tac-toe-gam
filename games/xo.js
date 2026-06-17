@@ -21,3 +21,12 @@ function startXO(level) {
 }
 
 function resetGame() { /* كود تصفير اللعبة */ }
+
+// عند كل حركة في اللعبة
+localStorage.setItem('xo_board', JSON.stringify(boardState));
+
+// عند فتح اللعبة، افحص هل توجد لعبة سابقة؟
+window.onload = () => {
+    const saved = localStorage.getItem('xo_board');
+    if (saved) { /* استكمل اللعبة */ }
+};
