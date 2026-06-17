@@ -1,25 +1,47 @@
-<div id="main-app" class="hidden">
-    <header class="top-bar">
-        <span>AX Tools</span>
-        <button onclick="logout()" style="background:none; border:none; color:white;">تسجيل خروج</button>
-    </header>
-    
-    <div class="welcome-banner">
-        <p>مرحباً، <span id="user-email-display">المستخدم</span></p>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AX-Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-box">
+            <h2>AX Tools</h2>
+            <input type="email" id="email-input" placeholder="البريد الإلكتروني">
+            <button id="send-btn" onclick="startVerification()">إرسال الرمز</button>
+            <div id="otp-container" class="hidden">
+                <input type="text" id="otp-input" placeholder="أدخل رمز التحقق">
+                <button onclick="handleVerify()">تحقق</button>
+            </div>
+            <p id="status-msg"></p>
+        </div>
     </div>
 
-    <main class="grid-container">
-        <div class="card" onclick="loadGame('xo')">🎮 <strong>الألعاب</strong></div>
-        <div class="card">☁️ <strong>Downloader</strong></div>
-        <div class="card">🧩 <strong>Brain</strong></div>
-        <div class="card">🛠️ <strong>أدوات</strong></div>
-        <div class="card">📊 <strong>تداول</strong></div>
-        <div class="card">📁 <strong>Files</strong></div>
-    </main>
-
-    <nav class="bottom-nav">
-        <div class="nav-item">🏠<br>الرئيسية</div>
-        <div class="nav-item">📧<br>إيميل</div>
-        <div class="nav-item">⚙️<br>المزيد</div>
-    </nav>
-</div>
+    <div id="main-app" class="hidden">
+        <header class="top-bar">
+            <span>AX-Tools</span>
+            <button onclick="logout()" class="logout-btn">تسجيل خروج</button>
+        </header>
+        <div class="welcome-banner">
+            <p>مرحباً، <span id="user-email-display">المستخدم</span></p>
+        </div>
+        <main class="grid-container">
+            <div class="card" onclick="loadGame('xo')">🎮 <strong>الألعاب</strong></div>
+            <div class="card">☁️ <strong>Downloader</strong></div>
+            <div class="card">🧩 <strong>Brain</strong></div>
+            <div class="card">🛠️ <strong>أدوات</strong></div>
+            <div class="card">📊 <strong>تداول</strong></div>
+            <div class="card">📁 <strong>Files</strong></div>
+        </main>
+        <nav class="bottom-nav">
+            <div class="nav-item">🏠<br>الرئيسية</div>
+            <div class="nav-item">📧<br>إيميل</div>
+            <div class="nav-item">⚙️<br>المزيد</div>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
