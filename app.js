@@ -105,3 +105,9 @@ function runUpdate() {
         window.location.reload(true); 
     }, 5000);
 }
+
+window.addEventListener('beforeunload', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.2s';
+});
+
