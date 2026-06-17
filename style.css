@@ -82,3 +82,19 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
 }
 
 
+
+/* البار السفلي الثابت */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: #0f172a;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #1e293b;
+    z-index: 1000;
+}
+.nav-item { color: white; text-align: center; font-size: 10px; cursor: pointer; }
+.nav-icon { width: 24px; height: 24px; }
