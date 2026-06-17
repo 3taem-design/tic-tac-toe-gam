@@ -55,10 +55,17 @@ function checkUpdate() {
 }
 
 function runUpdate() {
-    document.getElementById('upd-btn').disabled = true;
-    document.getElementById('progress').style.width = '100%';
+    const btn = document.getElementById('upd-btn');
+    const progress = document.getElementById('progress');
+    
+    btn.disabled = true;
+    btn.innerText = "جاري التحديث...";
+    progress.style.width = '100%';
+    
+    // الانتظار لمدة 5 ثواني كما طلبت لجمالية العرض
     setTimeout(() => {
-        alert("النظام محدث لآخر إصدار!");
-        document.querySelector('.update-popup').remove();
+        // هذا هو السطر "الحقيقي" الذي يجبر المتصفح على جلب أحدث ملفات من GitHub
+        // وإعادة تحميل التطبيق بدون حذف الاختصار
+        window.location.reload(true); 
     }, 5000);
 }
