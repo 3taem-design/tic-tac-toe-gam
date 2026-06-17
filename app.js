@@ -42,7 +42,7 @@ function confirmLogout() {
 }
 
 // المتغير الحالي للتطبيق
-const CURRENT_VERSION = "v.1.2.7"; 
+const CURRENT_VERSION = "v.1.2.6"; 
 
 async function checkUpdate() {
     try {
@@ -103,11 +103,5 @@ function runUpdate() {
         // هذا هو السطر "الحقيقي" الذي يجبر المتصفح على جلب أحدث ملفات من GitHub
         // وإعادة تحميل التطبيق بدون حذف الاختصار
         window.location.reload(true); 
-    }, 5000);
+    }, 10000);
 }
-
-window.addEventListener('beforeunload', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.2s';
-});
-
