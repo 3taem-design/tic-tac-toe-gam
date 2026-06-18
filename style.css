@@ -81,3 +81,7 @@ button { width: 100%; padding: 15px; background: #38bdf8; border: none; border-r
     display: none;
 }
 
+.active-nav {
+    pointer-events: none; /* يمنع أي نقرة (Click) على الزر */
+    opacity: 0.5;         /* يجعل الأيقونة باهتة ليعرف المستخدم أنه في هذه الصفحة */
+}
