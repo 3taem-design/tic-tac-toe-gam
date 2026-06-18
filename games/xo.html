@@ -1,21 +1,25 @@
-<div id="setup-screen">
-    <button onclick="setMode('pvp')">لاعب ضد لاعب</button>
-    <button onclick="showLevels()">ضد الكمبيوتر</button>
-</div>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لعبة</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
 
-<div id="levels-screen" class="hidden">
-    <button onclick="startXO('easy')">مبتدئ</button>
-    <button onclick="startXO('medium')">محترف</button>
-    <button onclick="startXO('hard')">أسطوري</button>
-</div>
+    <header class="game-header">
+        <div onclick="history.back()" style="padding: 15px; cursor: pointer;">⬅️ رجوع</div>
+    </header>
 
-<div id="game-screen" class="hidden">
-    <div id="board"></div>
-    <button onclick="resetGame()">إعادة اللعبة</button>
-    <button onclick="location.href='games_list.html'">تغيير النمط</button>
-</div>
+    <main>
+        </main>
 
-<nav class="bottom-nav">
-    <div class="nav-item" onclick="location.href='../index.html'">الرئيسية</div>
-</nav>
-<script src="xo.js"></script>
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="location.href='../index.html'">
+            <img src="../icons/icon-home.png" class="nav-icon"><br>الرئيسية
+        </div>
+    </nav>
+
+</body>
+</html>
