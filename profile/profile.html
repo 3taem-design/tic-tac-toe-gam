@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لعبة</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
 
+    <header class="top-bar">
+            <div onclick="confirmLogout()" style="cursor:pointer; font-size: 20px;">🚪</div>
+            <div onclick="checkUpdate()" style="cursor:pointer; font-size: 20px;">🔄</div>
+            <div id="status-badge" style="font-size: 12px;"><span style="color: #22c55e;">●</span> متصل</div>
+     </header>
+
+    <main>
+    </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item" onclick="location.href='/index.html'">
+            <img src="../icons/icon-home.png" class="nav-icon" alt="الرئيسية"><br><span>الرئيسية</span>
+        </div>
+        <div class="nav-item active-nav" 
+            <img src="../icons/icon-archive-folder.png" class="nav-icon"><br><span>الملفات</span>
+        </div>
+        <div class="nav-item" onclick="location.href='profile/profile.html'">
+            <img src="../icons/icon-user.png" class="nav-icon" alt="حسابي"><br><span>حسابي</span>
+        </div>
+        <div class="nav-item" onclick="location.href='more/more.html'">
+            <img src="../icons/icon-more.png" class="nav-icon" alt="المزيد"><br><span>المزيد</span>
+        </div>
+    </nav>
+
+</body>
+</html>
