@@ -105,3 +105,15 @@ function runUpdate() {
         window.location.reload(true); 
     }, 10000);
 }
+
+function loadPage(url) {
+    fetch(url)
+        .then(response => response.text())
+        .then(data => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data, 'text/html');
+            // استبدل محتوى الـ main فقط
+            document.querySelector('main').innerHTML = doc.querySelector('main').innerHTML;
+        })
+        .catch(err => console.log('خطأ في تحميل الصفحة:', err));
+}
