@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>لعبة الاسهم</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css"> <style>
+        /* هذا الجزء خاص باللعبة فقط */
+        .game-container {
+            background: #000000;
+            padding: 10px; /* يعطي مساحة بسيطة */
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            background: #ecf0f1;
+        }
+    </style>
     <link rel="manifest" href="/manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,8 +26,8 @@
         <div onclick="history.back()" style="padding: 15px; cursor: pointer;">⬅️ رجوع</div>
     </header>
 
-    <main>
-        <canvas id='canvas' width=1280 height=720></canvas>
+    <main class="game-container">
+    <canvas id='canvas'></canvas>
     </main>
 
     <nav class="bottom-nav">
