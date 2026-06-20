@@ -96,13 +96,14 @@ function runUpdate() {
     
     btn.disabled = true;
     btn.innerText = "جاري التحديث...";
+    
+    // يجعل الشريط يمتلئ ببطء خلال 10 ثوانٍ
+    progress.style.transition = 'width 10s linear'; 
     progress.style.width = '100%';
     
-    // الانتظار لمدة 5 ثواني كما طلبت لجمالية العرض
     setTimeout(() => {
-        // هذا هو السطر "الحقيقي" الذي يجبر المتصفح على جلب أحدث ملفات من GitHub
-        // وإعادة تحميل التطبيق بدون حذف الاختصار
         window.location.reload(true); 
-    }, 10000);
+    }, 10000); // هنا الوقت 10 ثوانٍ
+}
 }
 
