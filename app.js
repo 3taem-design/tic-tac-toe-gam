@@ -42,7 +42,7 @@ function confirmLogout() {
 }
 
 // المتغير الحالي للتطبيق
-const CURRENT_VERSION = "v.1.2.4"; 
+const CURRENT_VERSION = "v.1.2.7"; 
 
 async function checkUpdate() {
     try {
@@ -106,14 +106,3 @@ function runUpdate() {
     }, 10000);
 }
 
-function loadPage(url) {
-    fetch(url)
-        .then(response => response.text())
-        .then(data => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data, 'text/html');
-            // استبدل محتوى الـ main فقط
-            document.querySelector('main').innerHTML = doc.querySelector('main').innerHTML;
-        })
-        .catch(err => console.log('خطأ في تحميل الصفحة:', err));
-}
