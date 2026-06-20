@@ -105,5 +105,5 @@ function runUpdate() {
         window.location.reload(true); 
     }, 10000); // هنا الوقت 10 ثوانٍ
 }
-}
+
 
