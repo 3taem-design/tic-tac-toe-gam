@@ -414,3 +414,15 @@ window.requestAnimFrame = (function(){
 
 _pexresize();
 animated();
+
+// أضف هذا الجزء داخل arrows.js
+function _pexresize() {
+    var c = document.getElementById("canvas");
+    // هذا الكود يضمن أن اللعبة تملأ العرض المتاح
+    c.style.width = '100%';
+    c.style.height = (c.offsetWidth * 720 / 1280) + 'px';
+}
+
+// استدعاء الدالة عند فتح الصفحة وعند تغيير حجم الشاشة
+window.addEventListener('load', _pexresize);
+window.addEventListener('resize', _pexresize);
