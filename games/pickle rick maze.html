@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="../style.css"> 
+    
+    <link rel="stylesheet" href="game-style.css"> 
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+    <main>
+        <div class="custom-back-btn" onclick="history.back()">⬅️</div>
+       <div class="container">
+  <div id="score"></div>
+  <canvas id="game" width="375" height="375"></canvas>
+  <div id="introduction">Hold down the mouse to stretch out a stick</div>
+  <div id="perfect">DOUBLE SCORE</div>
+  <button id="restart">RESTART</button>
+</div>
+
+    </main>
+
+       
+    <script src="Stick-Hero.js"></script>
+    <script src="/app.js"></script>
+
+</body>
+</html>
