@@ -125,3 +125,11 @@ body {
     background-color: white;
   }
 }
+
+#game {
+    /* هذا يمنع المتصفح من سحب الصفحة أو عمل زووم */
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    display: block;
+}
