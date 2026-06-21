@@ -133,3 +133,15 @@ body {
     user-select: none;
     display: block;
 }
+
+.custom-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    font-size: 24px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
