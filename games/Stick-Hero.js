@@ -1,4 +1,4 @@
-alert("ابدا المرح الان");
+alert("ابدا المرح ");
 window.addEventListener("load", function() {
 
     // --- إعدادات اللعبة ---
