@@ -161,13 +161,30 @@ function generatePlatform() {
 resetGame();
 
 // If space was pressed restart the game
-window.addEventListener("keydown", function (event) {
-  if (event.key == " ") {
-    event.preventDefault();
-    resetGame();
-    return;
+// دوال التحكم المشتركة
+function startAction(e) {
+  // هذا السطر يمنع الـ scroll الافتراضي للمتصفح
+  if (e.type === 'touchstart') e.preventDefault(); 
+  
+  if (phase == "waiting") {
+    lastTimestamp = undefined;
+    introductionElement.style.opacity = 0;
+    phase = "stretching";
+    window.requestAnimationFrame(animate);
   }
-});
+}
+
+function endAction(e) {
+  if (phase == "stretching") {
+    phase = "turning";
+  }
+}
+
+// الربط مع الماوس واللمس
+window.addEventListener("mousedown", startAction);
+window.addEventListener("mouseup", endAction);
+window.addEventListener("touchstart", startAction, { passive: false });
+window.addEventListener("touchend", endAction, { passive: false });
 
 window.addEventListener("mousedown", function (event) {
   if (phase == "waiting") {
