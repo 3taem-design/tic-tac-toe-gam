@@ -1,3 +1,5 @@
+alert("هل يعمل الملف؟");
+
 window.addEventListener("load", function() {
 
     // --- إعدادات اللعبة ---
